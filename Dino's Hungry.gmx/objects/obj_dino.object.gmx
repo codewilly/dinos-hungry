@@ -30,6 +30,9 @@
 keyLeft = vk_numpad1;
 keyRight = vk_numpad3;
 keyJump = vk_numpad5;
+keyTake = ord('X');
+
+
 
 hInput = 0;
 
@@ -45,8 +48,10 @@ hForce = 0.30;
 hFrictionForce = 0.20;
 jumpForce = 4;
 
+// Sprite States
 isIdle = true;
 isOnGround = false;
+isCarrying = false;
 
 gravForce = 0.20;
 </string>
@@ -73,15 +78,26 @@ gravForce = 0.20;
 
 size = 0;
 
+// Parado
 idle[0] = spr_idle_size1;
 
+// Andando
 walk[0] = spr_walk_size1;
 
+// Pulo
 jump[0] = spr_jump_size1;
 
+// Cair
 fall[0] = spr_fall_size1;
 
+// Carregar Parado
+carryIdle[0] = spr_carry_idle_size1;
 
+// Carregar Andando
+carryWalk[0] = spr_carry_walk_size1;
+
+// Carregar Pulando
+carryJump[0] = spr_carry_jump_size1;
 </string>
           </argument>
         </arguments>
@@ -136,17 +152,31 @@ if (isOnGround)
 {
     if (isIdle)
     {
-        sprite_index = idle[size];
-    }else{
-        sprite_index = walk[size];
+        if (isCarrying)
+            sprite_index = carryIdle[size];
+        else
+            sprite_index = idle[size];
+    }
+    else
+    {
+        if (isCarrying)
+            sprite_index = carryWalk[size];
+        else
+            sprite_index = walk[size];
     }
 }
 else
 {
-    if (vSpeed &lt; 0)
-        sprite_index = jump[size];
+    if (isCarrying)
+        sprite_index = carryJump[size];
     else
-        sprite_index = fall[size];
+    {
+        if (vSpeed &lt; 0)
+            sprite_index = jump[size];
+        else
+            sprite_index = fall[size];
+    }
+
 }
 
 </string>
@@ -216,6 +246,10 @@ if (!scr_canMove(0,1) &amp;&amp; keyboard_check_pressed(keyJump))
 // Interromper pulo    
 if (!isOnGround &amp;&amp; keyboard_check_released(keyJump) &amp;&amp; vSpeed &lt; 0)
     vSpeed /= 2;
+    
+// Pegar (temp)
+if (keyboard_check_pressed(keyTake))
+    isCarrying = !isCarrying;
 </string>
           </argument>
         </arguments>

@@ -12,6 +12,9 @@
         <sprite>sprites\spr_walk_size1</sprite>
         <sprite>sprites\spr_jump_size1</sprite>
         <sprite>sprites\spr_fall_size1</sprite>
+        <sprite>sprites\spr_carry_idle_size1</sprite>
+        <sprite>sprites\spr_carry_walk_size1</sprite>
+        <sprite>sprites\spr_carry_jump_size1</sprite>
       </sprites>
       <sprite>sprites\spr_mask_size1</sprite>
     </sprites>

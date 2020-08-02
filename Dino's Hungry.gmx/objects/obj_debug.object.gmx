@@ -26,9 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>debugMode = true;
-
-teste = 10;
-teste2 = -10;
 </string>
           </argument>
         </arguments>
@@ -53,14 +50,9 @@ teste2 = -10;
             <kind>1</kind>
             <string>if (debugMode)
 {
-    teste = scr_bringToZero(teste, 0.33);
-    teste2 = scr_bringToZero(teste2, 0.33);
-
     debug[0] = "FPS: " + string(fps);
     debug[1] = "vSpeed: " + string(obj_dino.vSpeed);
     debug[2] = "hSpeed: " + string(obj_dino.hSpeed);
-    debug[3] = "teste: " + string(teste)
-    debug[4] = "teste2: " + string(teste2)
     
     for (var i = 0; i &lt; array_length_1d(debug); i++)
     {
